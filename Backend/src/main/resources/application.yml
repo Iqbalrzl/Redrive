@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: Redrive
+  datasource:
+    url: jdbc:mysql://localhost:3306/redrive
+    username: root
+    password: 03092002
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      format_sql: true
