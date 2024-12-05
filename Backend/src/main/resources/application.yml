@@ -7,10 +7,10 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/redrive
     username: root
-    password: 03092002
+    password:
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
     properties:
-      format_sql: true
+      hibernate.format_sql: true
