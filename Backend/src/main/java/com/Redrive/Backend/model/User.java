@@ -1,11 +1,10 @@
-package com.Redrive.Backend.models;
+package com.Redrive.Backend.model;
 
 import com.Redrive.Backend.security.Role;
 import static com.Redrive.Backend.validation.ValidationMessages.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,7 +36,8 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return role.getAuthorities();
+                //List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override

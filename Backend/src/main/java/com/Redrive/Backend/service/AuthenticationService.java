@@ -1,12 +1,12 @@
-package com.Redrive.Backend.config;
+package com.Redrive.Backend.service;
 
+import com.Redrive.Backend.jwt.JwtService;
 import com.Redrive.Backend.repository.UserRepository;
 import com.Redrive.Backend.request.AuthenticationRequest;
 import com.Redrive.Backend.request.RegisterRequest;
 import com.Redrive.Backend.response.AuthenticationResponse;
-import com.Redrive.Backend.models.User;
+import com.Redrive.Backend.model.User;
 import com.Redrive.Backend.security.Role;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

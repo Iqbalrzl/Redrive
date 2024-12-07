@@ -1,4 +1,4 @@
-package com.Redrive.Backend.models;
+package com.Redrive.Backend.model;
 
 import static com.Redrive.Backend.validation.ValidationMessages.*;
 import jakarta.persistence.*;

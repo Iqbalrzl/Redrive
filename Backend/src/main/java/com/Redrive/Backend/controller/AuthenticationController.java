@@ -1,12 +1,10 @@
-package com.Redrive.Backend.controllers;
+package com.Redrive.Backend.controller;
 
-import com.Redrive.Backend.config.AuthenticationService;
+import com.Redrive.Backend.service.AuthenticationService;
 import com.Redrive.Backend.request.AuthenticationRequest;
 import com.Redrive.Backend.request.RegisterRequest;
 import com.Redrive.Backend.response.AuthenticationResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
