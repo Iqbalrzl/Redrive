@@ -14,3 +14,12 @@ spring:
       ddl-auto: update
     properties:
       hibernate.format_sql: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security=DEBUG:
+
+jwt:
+  secret-key:

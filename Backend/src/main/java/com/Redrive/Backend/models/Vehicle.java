@@ -1,14 +1,10 @@
 package com.Redrive.Backend.models;
 
+import static com.Redrive.Backend.validation.ValidationMessages.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.math.BigDecimal;
 
 @Entity
@@ -23,21 +19,21 @@ public class Vehicle {
 //    )
     private Integer id;
 
-    @NotNull(message = "Model cannot be null.")
+    @NotNull(message = FIELD_CANNOT_BE_NULL)
     @Column(nullable = false, length = 50)
     private String model;
 
-    @NotNull(message = "Brand cannot be null.")
+    @NotNull(message = FIELD_CANNOT_BE_NULL)
     @Column(nullable = false, length = 50)
     private String brand;
 
-    @NotNull(message = "Year cannot be null.")
-    @Positive(message = "Year must be a positive number.")
+    @NotNull(message = FIELD_CANNOT_BE_NULL)
+    @Positive(message = FIELD_MUST_BE_POSITIVE)
     @Column(nullable = false)
     private Integer year;
 
-    @NotNull(message = "Price cannot be null.")
-    @PositiveOrZero(message = "Price cannot be negative.")
+    @NotNull(message = FIELD_CANNOT_BE_NULL)
+    @PositiveOrZero(message = FIELD_CANNOT_BE_NEGATIVE)
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal price;
 

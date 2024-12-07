@@ -1,4 +1,4 @@
-package com.Redrive.Backend.controller;
+package com.Redrive.Backend.controllers;
 
 import com.Redrive.Backend.models.Vehicle;
 import jakarta.validation.Valid;
