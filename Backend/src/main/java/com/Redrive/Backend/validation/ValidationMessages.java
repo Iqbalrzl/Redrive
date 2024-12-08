@@ -5,6 +5,6 @@ public class ValidationMessages {
     public static final String FIELD_MUST_BE_POSITIVE = "This field must be a positive number.";
     public static final String FIELD_CANNOT_BE_NEGATIVE = "This field cannot be negative.";
     public static final String PASSWORD_MUST_BE_8_CHARACTERS = "Password must be at least 8 characters.";
-
+    public static final String TIME_CANNOT_BE_IN_PAST = "Time cannot be in the past.";
 
 }

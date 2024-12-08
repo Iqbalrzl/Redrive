@@ -1,29 +1,24 @@
-package com.Redrive.Backend.model;
+package com.Redrive.Backend.auth;
 
-import com.Redrive.Backend.security.Role;
 import static com.Redrive.Backend.validation.ValidationMessages.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
-import java.util.List;
-
-
 
 
 @Entity
 @Table(name = "User")
-public class User implements UserDetails {
+public abstract class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull(message = FIELD_CANNOT_BE_NULL)
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, unique = true, length = 100)
     private String username;
 
     @NotNull(message = FIELD_CANNOT_BE_NULL)
@@ -32,6 +27,7 @@ public class User implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 50)
     private Role role;
 
     @Override
@@ -64,5 +60,9 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

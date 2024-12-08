@@ -1,14 +1,9 @@
-package com.Redrive.Backend.service;
+package com.Redrive.Backend.auth;
 
-import com.Redrive.Backend.jwt.JwtService;
-import com.Redrive.Backend.repository.UserRepository;
-import com.Redrive.Backend.request.AuthenticationRequest;
-import com.Redrive.Backend.request.RegisterRequest;
-import com.Redrive.Backend.response.AuthenticationResponse;
-import com.Redrive.Backend.model.User;
-import com.Redrive.Backend.security.Role;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +28,10 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse register(RegisterRequest request){
-        var user = new User();
+        var user = new Admin();
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Role.USER);
+        user.setRole(Role.ADMIN);
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         AuthenticationResponse response = new AuthenticationResponse();
@@ -52,7 +47,7 @@ public class AuthenticationService {
                 )
         );
         var user = repository.findByUsername(request.getUsername())
-                .orElseThrow();
+                .orElseThrow(() -> new UsernameNotFoundException("Account does not exist."));
         var jwtToken = jwtService.generateToken(user);
         AuthenticationResponse response = new AuthenticationResponse();
         response.setToken(jwtToken);

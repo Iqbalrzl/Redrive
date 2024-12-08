@@ -1,15 +1,12 @@
-package com.Redrive.Backend.security;
+package com.Redrive.Backend.auth;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import  com.Redrive.Backend.config.Permission;
-import static com.Redrive.Backend.config.Permission.*;
+import static com.Redrive.Backend.auth.Permission.*;
 
 public enum Role {
 
@@ -27,6 +24,14 @@ public enum Role {
                     ADMIN_UPDATE,
                     ADMIN_DELETE,
                     ADMIN_CREATE
+            )
+    ),
+    CUSTOMER(
+            Set.of(
+                    CUSTOMER_CREATE,
+                    CUSTOMER_READ,
+                    CUSTOMER_UPDATE,
+                    CUSTOMER_DELETE
             )
     );
 

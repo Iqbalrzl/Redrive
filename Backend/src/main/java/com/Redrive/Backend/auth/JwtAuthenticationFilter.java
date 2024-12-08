@@ -1,4 +1,4 @@
-package com.Redrive.Backend.jwt;
+package com.Redrive.Backend.auth;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

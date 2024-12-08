@@ -1,12 +1,9 @@
-package com.Redrive.Backend.controller;
+package com.Redrive.Backend.vehicle;
 
-import com.Redrive.Backend.model.Vehicle;
-import com.Redrive.Backend.config.Permission.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import com.Redrive.Backend.repository.VehicleRepository;
 
 import java.util.List;
 import java.util.Optional;

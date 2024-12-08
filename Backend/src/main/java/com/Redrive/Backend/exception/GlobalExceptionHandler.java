@@ -1,7 +1,8 @@
-package com.Redrive.Backend.validation;
+package com.Redrive.Backend.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -18,5 +19,19 @@ public class GlobalExceptionHandler {
             errors.put(error.getField(), error.getDefaultMessage());
         });
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomerDoesNotExist.class)
+    public ResponseEntity<Map<String, String>> handleUsernameNotFoundException(CustomerDoesNotExist ex) {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidAuthorizationHeader.class)
+    public ResponseEntity<Map<String, String>> handleUsernameNotFoundException(InvalidAuthorizationHeader ex) {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
 }

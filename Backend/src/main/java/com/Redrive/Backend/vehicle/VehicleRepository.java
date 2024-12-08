@@ -1,6 +1,5 @@
-package com.Redrive.Backend.repository;
+package com.Redrive.Backend.vehicle;
 
-import com.Redrive.Backend.model.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

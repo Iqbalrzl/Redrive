@@ -1,6 +1,6 @@
 package com.Redrive.Backend.config;
 
-import com.Redrive.Backend.jwt.JwtAuthenticationFilter;
+import com.Redrive.Backend.auth.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -18,6 +18,8 @@ public class SecurityConfiguration {
 
     private static final String[] WHITE_LIST_URL = {
             "/api/auth/**",
+            "/api/customer/**",
+            "/error"
     };
 
     private final JwtAuthenticationFilter jwtAuthFilter;

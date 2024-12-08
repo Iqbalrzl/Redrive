@@ -1,4 +1,4 @@
-package com.Redrive.Backend.jwt;
+package com.Redrive.Backend.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

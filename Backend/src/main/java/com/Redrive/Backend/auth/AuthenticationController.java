@@ -1,9 +1,6 @@
-package com.Redrive.Backend.controller;
+package com.Redrive.Backend.auth;
 
-import com.Redrive.Backend.service.AuthenticationService;
-import com.Redrive.Backend.request.AuthenticationRequest;
-import com.Redrive.Backend.request.RegisterRequest;
-import com.Redrive.Backend.response.AuthenticationResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +19,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request
+            @Valid @RequestBody RegisterRequest request
     ){
         return ResponseEntity.ok(service.register(request));
     }

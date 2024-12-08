@@ -1,11 +1,14 @@
-package com.Redrive.Backend.model;
+package com.Redrive.Backend.vehicle;
 
 import static com.Redrive.Backend.validation.ValidationMessages.*;
+
+import com.Redrive.Backend.reservation.Reservation;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "vehicles")
@@ -36,6 +39,11 @@ public class Vehicle {
     @PositiveOrZero(message = FIELD_CANNOT_BE_NEGATIVE)
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal price;
+
+    private Boolean available;
+
+    @OneToMany
+    private List<Reservation> reservations;
 
     public Integer getId() {
         return id;
@@ -75,5 +83,13 @@ public class Vehicle {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

@@ -1,8 +1,6 @@
-package com.Redrive.Backend.request;
+package com.Redrive.Backend.auth;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
