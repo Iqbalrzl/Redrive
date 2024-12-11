@@ -21,3 +21,6 @@ logging:
 
 jwt:
   secret-key:
+
+media:
+  path: "C:/Users/asus/Documents/Programming/Project/Redrive/Backend/src/main/resources/media/"

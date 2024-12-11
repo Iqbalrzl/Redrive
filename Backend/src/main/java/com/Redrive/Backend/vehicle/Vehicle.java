@@ -42,6 +42,8 @@ public class Vehicle {
 
     private Boolean available;
 
+    private String imageUrl;
+
     @OneToMany
     private List<Reservation> reservations;
 
@@ -83,6 +85,22 @@ public class Vehicle {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public List<Reservation> getReservations() {
