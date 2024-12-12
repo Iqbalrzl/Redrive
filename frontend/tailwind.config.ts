@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
+
 module.exports = {
-	darkMode: ["class"],
 	content: [
 		'./pages/**/*.{ts,tsx}',
 		'./components/**/*.{ts,tsx}',
@@ -16,10 +17,6 @@ module.exports = {
 			},
 		},
 		extend: {
-			fontFamily: {
-				serif: ['var(--font-playfair)'],
-				sans: ['var(--font-montserrat)'],
-			},
 			colors: {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
@@ -27,7 +24,7 @@ module.exports = {
 				background: "hsl(var(--background))",
 				foreground: "hsl(var(--foreground))",
 				primary: {
-					DEFAULT: "#0A0F1C",
+					DEFAULT: "hsl(var(--primary))",
 					foreground: "hsl(var(--primary-foreground))",
 				},
 				secondary: {

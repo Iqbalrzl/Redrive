@@ -1,17 +1,10 @@
 import './globals.css'
-import { Playfair_Display, Montserrat } from 'next/font/google'
-import Link from 'next/link'
+import { Inter } from 'next/font/google'
+import { AuthProvider } from '@/components/auth-provider'
+import { Header } from '@/app/components/header'
 import { Toaster } from '@/components/ui/toaster'
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-})
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-})
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'REDRIVE - Hourly Vehicle Rental',
@@ -25,24 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${montserrat.variable} font-sans`}>
-        <header className="bg-black text-white py-4">
-          <div className="container mx-auto px-4 flex justify-between items-center">
-            <h1 className="text-2xl font-bold font-serif">REDRIVE</h1>
-            <nav className="font-sans">
-              <ul className="flex space-x-4">
-                <li><Link href="/" className="hover:text-gray-300 transition-colors">Home</Link></li>
-                <li><Link href="/login" className="hover:text-gray-300 transition-colors">Login</Link></li>
-                <li><Link href="/register" className="hover:text-gray-300 transition-colors">Register</Link></li>
-                <li><Link href="/profile" className="hover:text-gray-300 transition-colors">Profile</Link></li>
-              </ul>
-            </nav>
-          </div>
-        </header>
-        <main className="container mx-auto px-4 py-8">
-          {children}
-        </main>
-        <Toaster />
+      <body className={inter.className}>
+        <AuthProvider>
+          <Header />
+          <main className="container mx-auto px-4 py-8">
+            {children}
+          </main>
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   )

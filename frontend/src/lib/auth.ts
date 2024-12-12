@@ -33,12 +33,13 @@ export async function register(data: RegisterData): Promise<MeResponse> {
 }
 
 export async function getMe(): Promise<MeResponse | null> {
-    const token = localStorage.getItem('jwt');
-    if (!token) {
+    try {
+        const response = await axiosInstance.get('/api/customer/me');
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching user data:', error);
         return null;
     }
-    const response = await axiosInstance.get('/api/customer/me');
-    return response.data;
 }
 
 export function logout() {
@@ -49,7 +50,17 @@ export function getToken(): string | null {
     return localStorage.getItem('jwt');
 }
 
-export function isLoggedIn(): boolean {
-    return !!localStorage.getItem('jwt');
+export async function isLoggedIn(): Promise<MeResponse | null> {
+    const token = getToken();
+    if (!token) {
+        return null;
+    }
+    try {
+        const user = await getMe();
+        return user;
+    } catch (error) {
+        console.error('Error checking login status:', error);
+        return null;
+    }
 }
 

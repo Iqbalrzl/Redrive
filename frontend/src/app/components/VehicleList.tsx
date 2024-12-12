@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import VehicleCard from './VehicleCard'
-import ReservationModal from './ReservationModal'
-import axiosInstance from 'src/lib/axios'
+import axiosInstance from '@/lib/axios'
 
 interface Vehicle {
     id: number;
@@ -16,7 +15,6 @@ interface Vehicle {
 
 export default function VehicleList() {
     const [vehicles, setVehicles] = useState<Vehicle[]>([])
-    const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
@@ -40,26 +38,17 @@ export default function VehicleList() {
     }
 
     if (error) {
-        return <div className="text-center text-red-500">{error}</div>
+        return <div className="text-center text-destructive">{error}</div>
     }
 
     return (
-        <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {vehicles.map((vehicle) => (
-                    <VehicleCard
-                        key={vehicle.id}
-                        vehicle={vehicle}
-                        onReserve={() => setSelectedVehicle(vehicle)}
-                    />
-                ))}
-            </div>
-            {selectedVehicle && (
-                <ReservationModal
-                    vehicle={selectedVehicle}
-                    onClose={() => setSelectedVehicle(null)}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {vehicles.map((vehicle) => (
+                <VehicleCard
+                    key={vehicle.id}
+                    vehicle={vehicle}
                 />
-            )}
+            ))}
         </div>
     )
 }

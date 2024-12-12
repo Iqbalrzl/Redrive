@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useToast } from '@/hooks/use-toast'
 import { login, isLoggedIn } from '@/lib/auth'
+import { useAuth } from '@/components/auth-provider'
 
 export default function LoginPage() {
     const [username, setUsername] = useState('')
@@ -14,17 +15,19 @@ export default function LoginPage() {
     const [error, setError] = useState('')
     const router = useRouter()
     const { toast } = useToast()
+    const { user, setUser } = useAuth()
 
     useEffect(() => {
-        if (isLoggedIn()) {
+        if (user) {
             router.push('/profile')
         }
-    }, [router])
+    }, [user, router])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         try {
-            await login({ username, password })
+            const token = await login({ username, password })
+            setUser(await isLoggedIn()) // Update the user state in AuthProvider
             toast({
                 title: "Success",
                 description: "You have successfully logged in.",
@@ -40,6 +43,10 @@ export default function LoginPage() {
         }
     }
 
+    if (user) {
+        return null // Don't render anything if user is already logged in
+    }
+
     return (
         <div className="max-w-md mx-auto mt-8">
             <h1 className="text-3xl font-bold mb-6">Login</h1>
@@ -52,7 +59,6 @@ export default function LoginPage() {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
-                        className="font-sans"
                     />
                 </div>
                 <div className="space-y-2">
@@ -63,11 +69,10 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        className="font-sans"
                     />
                 </div>
-                {error && <p className="text-red-500">{error}</p>}
-                <Button type="submit" className="w-full bg-black hover:bg-gray-800 transition-colors">
+                {error && <p className="text-destructive">{error}</p>}
+                <Button type="submit" className="w-full">
                     Login
                 </Button>
             </form>
