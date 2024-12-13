@@ -5,7 +5,6 @@ import com.Redrive.Backend.vehicle.Vehicle;
 import static com.Redrive.Backend.validation.ValidationMessages.*;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -23,7 +22,7 @@ public class Reservation {
     private Integer id;
 
     @CreationTimestamp
-    @Column(insertable = false, updatable = false)
+    @Column(updatable = false)
     private LocalDateTime date;
 
     @NotNull(message = FIELD_CANNOT_BE_NULL)
@@ -45,7 +44,7 @@ public class Reservation {
     @FutureOrPresent(message = TIME_CANNOT_BE_IN_PAST)
     private LocalTime starts;
 
-    @Future(message = TIME_CANNOT_BE_IN_PAST)
+//    @Future(message = TIME_CANNOT_BE_IN_PAST)
     private LocalTime ends;
 
     @Column(name = "total_price", precision = 12, scale = 2)

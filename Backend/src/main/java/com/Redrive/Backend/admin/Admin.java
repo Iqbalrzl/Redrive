@@ -1,5 +1,6 @@
-package com.Redrive.Backend.auth;
+package com.Redrive.Backend.admin;
 
+import com.Redrive.Backend.auth.User;
 import jakarta.persistence.Entity;
 
 @Entity

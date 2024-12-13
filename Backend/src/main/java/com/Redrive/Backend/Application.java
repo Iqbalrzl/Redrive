@@ -1,17 +1,13 @@
 package com.Redrive.Backend;
 
-import com.Redrive.Backend.auth.Admin;
 import com.Redrive.Backend.auth.JwtService;
 import com.Redrive.Backend.auth.UserRepository;
-import com.Redrive.Backend.auth.AuthenticationResponse;
 import com.Redrive.Backend.auth.AuthenticationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import static com.Redrive.Backend.auth.Role.ADMIN;
 
 @SpringBootApplication(scanBasePackages = "com.Redrive.Backend")
 public class Application {
@@ -28,7 +24,7 @@ public class Application {
 			PasswordEncoder passwordEncoder
 	) {
 		return args -> {
-			System.out.println("");
+			System.out.println();
 //			var admin = new Admin();
 //			admin.setUsername("Admin");
 //			admin.setPassword(passwordEncoder.encode("password"));

@@ -66,7 +66,7 @@ public class VehicleController {
             @PathVariable Integer id,
             @RequestParam("image") MultipartFile file
     )throws IOException {
-        String uploadImage = service.addVehicleImage(id,file);
+        String uploadImage = service.setVehicleImage(id,file);
         return ResponseEntity.ok(uploadImage);
     }
 }

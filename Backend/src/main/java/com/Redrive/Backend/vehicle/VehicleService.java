@@ -39,7 +39,7 @@ public class VehicleService {
         return "Success";
     }
 
-    public String addVehicleImage(Integer id, MultipartFile file) throws IOException {
+    public String setVehicleImage(Integer id, MultipartFile file) throws IOException {
 
         String url = ServletUriComponentsBuilder
                 .fromCurrentContextPath()

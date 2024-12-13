@@ -3,6 +3,7 @@ package com.Redrive.Backend.vehicle;
 import static com.Redrive.Backend.validation.ValidationMessages.*;
 
 import com.Redrive.Backend.reservation.Reservation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -44,6 +45,7 @@ public class Vehicle {
 
     private String imageUrl;
 
+    @JsonIgnore
     @OneToMany
     private List<Reservation> reservations;
 

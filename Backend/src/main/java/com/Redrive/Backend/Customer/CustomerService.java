@@ -57,6 +57,21 @@ public class CustomerService {
     public MeResponse me(
             @NonNull HttpServletRequest request
     ){
+        Customer customer = getAuthenticatedCustomer(request);
+        MeResponse response = new MeResponse();
+        response.setId(customer.getId());
+        response.setUsername(customer.getUsername());
+        response.setBirthdate(customer.getBirthdate());
+        response.setPhone(customer.getPhone());
+        response.setAddress(customer.getAddress());
+        response.setReservations(customer.getReservations());
+        return response;
+
+    }
+
+    public Customer getAuthenticatedCustomer(
+            @NonNull HttpServletRequest request
+    ){
         final String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new InvalidAuthorizationHeader("Invalid Authorization header.");
@@ -69,18 +84,10 @@ public class CustomerService {
 
         if (cust.isPresent()){
             Customer customer = cust.get();
-            MeResponse response = new MeResponse();
-            response.setId(customer.getId());
-            response.setUsername(customer.getUsername());
-            response.setBirthdate(customer.getBirthdate());
-            response.setPhone(customer.getPhone());
-            response.setAddress(customer.getAddress());
-            response.setReservations(customer.getReservations());
-            return response;
-        } else {
+            return customer;
+        }else {
             throw new CustomerDoesNotExist("Customer does not exist.");
         }
-
-    }
+    };
 
 }

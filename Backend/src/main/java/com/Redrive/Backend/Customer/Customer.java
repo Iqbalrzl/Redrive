@@ -2,6 +2,7 @@ package com.Redrive.Backend.Customer;
 
 import com.Redrive.Backend.auth.User;
 import com.Redrive.Backend.reservation.Reservation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -21,6 +22,7 @@ public class Customer extends User {
 
     private String address;
 
+    @JsonIgnore
     @OneToMany
     private List<Reservation> reservations;
 
