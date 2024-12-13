@@ -30,7 +30,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
     }
 
     return (
-        <Card className="overflow-hidden border-0 bg-card/50">
+        <Card className="overflow-hidden bg-neutral-400/1 text-black/63">
             <div className="relative aspect-[4/3] w-full">
                 <Image
                     src={vehicle.imageUrl}
@@ -40,14 +40,14 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
                 />
             </div>
             <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold">{vehicle.brand} {vehicle.model}</h3>
-                <p className="text-muted-foreground">Year: {vehicle.year}</p>
-                <p className="text-xl font-bold mt-2">${vehicle.price.toFixed(2)}/hour</p>
+                <h3 className="text-2xl font-bold">{vehicle.brand} {vehicle.model}</h3>
+                <p className="text-black text-opacity-60">{vehicle.year}</p>
+                <p className="font-bold mt-2">${vehicle.price.toFixed(2)}/hour</p>
             </CardContent>
             <CardFooter className="p-6 pt-0">
-                <Button
-                    onClick={handleReserve}
-                    className="w-full bg-primary hover:bg-primary/90"
+                <Button 
+                    onClick={handleReserve} 
+                    className="w-full bg-black text-white hover:bg-gray-800"
                     size="lg"
                 >
                     Reserve Now

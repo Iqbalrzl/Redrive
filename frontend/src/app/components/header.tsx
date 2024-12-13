@@ -24,43 +24,44 @@ export function Header() {
         toast({
             title: "Success",
             description: "You have been logged out.",
+            className: "bg-success text-white",
         })
         router.push('/')
     }
 
     return (
-        <header className="border-b border-border bg-background">
+        <header className="bg-black text-white">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                 <Link href="/" className="text-2xl font-bold">
                     REDRIVE
                 </Link>
                 <nav className="flex items-center space-x-4">
-                    <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+                    <Link href="/" className="text-sm font-medium hover:text-gray-300 transition-colors">
                         Home
                     </Link>
                     {user ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="ghost">Profile</Button>
+                                <Button variant="ghost" className="text-sm hover:text-gray-300 hover:bg-transparent transitions-colors">Profile</Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                <DropdownMenuItem onSelect={() => router.push('/profile')}>
+                            <DropdownMenuContent className="bg-black border border-gray-800">
+                                <DropdownMenuItem onSelect={() => router.push('/profile')} className="text-white hover:bg-gray-900">
                                     Profile
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onSelect={() => router.push('/reservations')}>
+                                <DropdownMenuItem onSelect={() => router.push('/reservations')} className="text-white hover:bg-gray-900">
                                     Reservations
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onSelect={handleLogout}>
+                                <DropdownMenuItem onSelect={handleLogout} className="text-white hover:bg-gray-900">
                                     Logout
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     ) : (
                         <>
-                            <Link href="/login" className="text-sm font-medium hover:text-primary transition-colors">
+                            <Link href="/login" className="text-sm font-medium hover:text-gray-300 transition-colors">
                                 Login
                             </Link>
-                            <Link href="/register" className="text-sm font-medium hover:text-primary transition-colors">
+                            <Link href="/register" className="text-sm font-medium hover:text-gray-300 transition-colors">
                                 Register
                             </Link>
                         </>

@@ -21,8 +21,8 @@ export default function ProfilePage() {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6">Profile Information</h1>
-            <Card>
+            <h1 className="text-3xl font-bold mb-6 text-black">Profile</h1>
+            <Card className="bg-neutral-400/1 text-black">
                 <CardHeader>
                     <CardTitle>{user.username}</CardTitle>
                 </CardHeader>

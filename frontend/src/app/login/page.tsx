@@ -72,7 +72,7 @@ export default function LoginPage() {
                     />
                 </div>
                 {error && <p className="text-destructive">{error}</p>}
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full  bg-black text-white hover:bg-gray-800 transition-colors">
                     Login
                 </Button>
             </form>
