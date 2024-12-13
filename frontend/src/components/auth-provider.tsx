@@ -1,27 +1,23 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { getMe, MeResponse, isLoggedIn } from '@/lib/auth'
+import { getMe, MeResponse, isLoggedIn, AdminResponse } from '@/lib/auth'
 
 interface AuthContextType {
-    user: MeResponse | null
-    setUser: React.Dispatch<React.SetStateAction<MeResponse | null>>
+    user: MeResponse | AdminResponse | null
+    setUser: React.Dispatch<React.SetStateAction<MeResponse | AdminResponse | null>>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [user, setUser] = useState<MeResponse | null>(null)
+    const [user, setUser] = useState<MeResponse | AdminResponse | null>(null)
 
     useEffect(() => {
         const fetchUser = async () => {
-            if (await isLoggedIn()) {
-                try {
-                    const userData = await getMe()
-                    setUser(userData)
-                } catch (error) {
-                    console.error('Failed to fetch user data:', error)
-                }
+            const userData = await isLoggedIn()
+            if (userData) {
+                setUser(userData)
             }
         }
 
