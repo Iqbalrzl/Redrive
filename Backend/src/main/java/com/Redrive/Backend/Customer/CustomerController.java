@@ -3,14 +3,12 @@ package com.Redrive.Backend.Customer;
 import com.Redrive.Backend.auth.AuthenticationRequest;
 import com.Redrive.Backend.auth.AuthenticationResponse;
 import com.Redrive.Backend.auth.AuthenticationService;
-import com.Redrive.Backend.vehicle.Vehicle;
-import com.Redrive.Backend.vehicle.VehicleRepository;
+import com.Redrive.Backend.auth.RegisterCustomerRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

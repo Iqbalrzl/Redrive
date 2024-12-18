@@ -46,7 +46,7 @@ public class Vehicle {
     private String imageUrl;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "vehicle", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = false)
     private List<Reservation> reservations;
 
     public Integer getId() {

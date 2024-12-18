@@ -37,6 +37,15 @@ public class ReservationController {
         this.service = service;
     }
 
+    @PostMapping("api/vehicle/{id}/reservation")
+    public ResponseEntity<ReservationResponse> createReservation(
+            @NonNull HttpServletRequest request,
+           @Valid @RequestBody ReservationRequest reservationRequest,
+            @PathVariable Integer id
+    ){
+        return ResponseEntity.ok(service.createReservationByVehicleId(request,reservationRequest,id));
+    }
+
     @GetMapping("api/vehicle/{id}/reservation")
     public ResponseEntity<List<ReservationResponse>> reservationList (
             @PathVariable Integer id
@@ -44,13 +53,5 @@ public class ReservationController {
         return ResponseEntity.ok(service.reservationListByVehicleId(id));
     }
 
-    @PostMapping("api/vehicle/{id}/reservation")
-    public ResponseEntity<ReservationResponse> createReservation(
-            @NonNull HttpServletRequest request,
-           @Valid @RequestBody ReservationRequest reservationRequest,
-            @PathVariable Integer id
-    ){
-        return ResponseEntity.ok(service.createReservation(request,reservationRequest,id));
-    }
 
 }

@@ -1,18 +1,15 @@
 package com.Redrive.Backend.Customer;
 
-import com.Redrive.Backend.auth.AuthenticationResponse;
-import com.Redrive.Backend.auth.JwtService;
-import com.Redrive.Backend.auth.Role;
-import com.Redrive.Backend.auth.UserRepository;
+import com.Redrive.Backend.auth.*;
 import com.Redrive.Backend.exception.CustomerDoesNotExist;
 import com.Redrive.Backend.exception.InvalidAuthorizationHeader;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,6 +30,18 @@ public class CustomerService {
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
+    }
+
+    public List<Customer> listCustomer(){
+        return repository.findAll();
+    }
+
+    public Customer getCustomerById(Integer id){
+        Optional<Customer> customer = repository.findById(id);
+        if (customer != null){
+            return customer.get();
+        }
+        return null;
     }
 
     public MeResponse register(RegisterCustomerRequest request){

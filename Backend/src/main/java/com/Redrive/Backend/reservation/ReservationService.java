@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -38,29 +39,19 @@ public class ReservationService {
         this.vhclService = vhclService;
     }
 
-    public List<ReservationResponse> reservationListByVehicleId(Integer id){
-
-        Vehicle vehicle = vhclRepository.findById(id).orElseThrow(()->new VehicleDoesNotExist("Vehicle does not exist."));
-        List<Reservation> reservation = repository.findByVehicle(vehicle);
-        List<ReservationResponse> reservationResponse = new ArrayList<>();
-
-        for (Reservation res : reservation) {
-            ReservationResponse response = new ReservationResponse();
-            response.setId(res.getId());
-            response.setDate(res.getDate());
-            response.setCustomerId(res.getCustomer().getId());
-            response.setVehicleId(res.getVehicle().getId());
-            response.setDuration(res.getDuration());
-            response.setStarts(res.getStarts());
-            response.setEnds(res.getEnds());
-            response.setTotal(res.getTotal());
-            reservationResponse.add(response);
-        }
-
-        return reservationResponse;
+    public List<Reservation> listReservation(){
+        return repository.findAll();
     }
 
-    public ReservationResponse createReservation(
+    public Reservation getReservationById(Integer id){
+        Optional<Reservation> reservation = repository.findById(id);
+        if (reservation != null){
+            return reservation.get();
+        }
+        return null;
+    }
+
+    public ReservationResponse createReservationByVehicleId(
             @NonNull HttpServletRequest request,
             ReservationRequest reservationRequest,
             Integer vehicleId
@@ -111,4 +102,25 @@ public class ReservationService {
         return response;
     }
 
+    public List<ReservationResponse> reservationListByVehicleId(Integer id){
+
+        Vehicle vehicle = vhclRepository.findById(id).orElseThrow(()->new VehicleDoesNotExist("Vehicle does not exist."));
+        List<Reservation> reservation = repository.findByVehicle(vehicle);
+        List<ReservationResponse> reservationResponse = new ArrayList<>();
+
+        for (Reservation res : reservation) {
+            ReservationResponse response = new ReservationResponse();
+            response.setId(res.getId());
+            response.setDate(res.getDate());
+            response.setCustomerId(res.getCustomer().getId());
+            response.setVehicleId(res.getVehicle().getId());
+            response.setDuration(res.getDuration());
+            response.setStarts(res.getStarts());
+            response.setEnds(res.getEnds());
+            response.setTotal(res.getTotal());
+            reservationResponse.add(response);
+        }
+
+        return reservationResponse;
+    }
 }

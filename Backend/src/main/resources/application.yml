@@ -7,7 +7,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/redrive
     username: root
-    password:
+    password: 03092002
   jpa:
     show-sql: true
     hibernate:
@@ -20,7 +20,7 @@ logging:
     org.springframework.security: DEBUG
 
 jwt:
-  secret-key:
+  secret-key: "921b2dda5e29a39561a84c910599bbc4177f89367abf595e15fa1ead106cd196"
 
 media:
   path: "C:/Users/asus/Documents/Programming/Project/Redrive/Backend/src/main/resources/media/"

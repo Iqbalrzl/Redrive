@@ -1,5 +1,6 @@
 package com.Redrive.Backend.vehicle;
 
+import com.Redrive.Backend.exception.VehicleDoesNotExist;
 import com.Redrive.Backend.image.Image;
 import com.Redrive.Backend.image.ImageService;
 import jakarta.persistence.EntityNotFoundException;
@@ -13,6 +14,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -29,6 +33,18 @@ public class VehicleService {
         this.imgService = imgService;
     }
 
+    public List<Vehicle> listVehicle(){
+        return repository.findAll();
+    }
+
+    public Vehicle getVehicleById(Integer id){
+        Optional<Vehicle> vehicle = repository.findById(id);
+        if (vehicle.isPresent()){
+            return vehicle.get();
+        }
+        return null;
+    }
+
     public String createVehicle(CreateVehicleRequest request) throws IOException {
         var vehicle = new Vehicle();
         vehicle.setBrand(request.getBrand());
@@ -36,7 +52,46 @@ public class VehicleService {
         vehicle.setPrice(request.getPrice());
         vehicle.setYear(request.getYear());
         repository.save(vehicle);
-        return "Success";
+        return "Successfuly created";
+    }
+
+    public boolean updateVehicle(Integer id, UpdateVehicleRequest request){
+        Optional<Vehicle> vhcl= repository.findById(id);
+        if (!vhcl.isPresent()){
+            return false;
+        }
+        var vehicle = vhcl.get();
+        if (request.getBrand() != null){
+        vehicle.setBrand(request.getBrand());
+        }
+        if (request.getModel() != null){
+        vehicle.setModel(request.getModel());
+        }
+        if (request.getPrice() != null){
+        vehicle.setPrice(request.getPrice());
+        }
+        if (request.getYear()!= null){
+        vehicle.setYear(request.getYear());
+        }
+        repository.save(vehicle);
+        return true;
+    }
+
+    public Map<Boolean, String> deleteVehicle(Integer id){
+        HashMap<Boolean, String> result = new HashMap<>();
+        Optional<Vehicle> vhcl = repository.findById(id);
+
+        if (!vhcl.isPresent()){
+            return Map.of(false, "Vehicle does not exist.");
+        }
+
+        var vehicle = vhcl.get();
+
+        if (vehicle.getReservations() == null){
+            return Map.of(false,"Failed to delete because vehicle associated with reservations");
+        }
+        repository.deleteById(id);
+        return Map.of(true,"Successfully deleted");
     }
 
     public String setVehicleImage(Integer id, MultipartFile file) throws IOException {

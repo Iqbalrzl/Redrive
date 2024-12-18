@@ -21,6 +21,7 @@ public class SecurityConfiguration {
             "/api/customer/**",
             "/api/image/**",
             "/api/vehicle/**",
+            "/api/admin/**",
             "/error"
     };
 

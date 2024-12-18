@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -32,19 +33,18 @@ public class VehicleController {
 
     @GetMapping("")
 //    @PreAuthorize("hasAuthority('user:read')")
-    public List<Vehicle> list(){
-        return repository.findAll();
+    public ResponseEntity<List<Vehicle>> list() {
+        return ResponseEntity.ok(service.listVehicle());
     }
 
     @GetMapping("/{id}")
-    public Optional<Vehicle> getById(@PathVariable Integer id){
-        return repository.findById(id);
-    }
-
-    @PostMapping("")
-//    @PreAuthorize("hasAuthority('admin:create')")
-    public String createVehicle(@Valid @RequestBody CreateVehicleRequest request) throws IOException {
-        return service.createVehicle(request);
+    public ResponseEntity<?> getVehicleById(@PathVariable Integer id) {
+        Vehicle vehicle = service.getVehicleById(id);
+        if (vehicle != null)
+            return ResponseEntity.ok(vehicle);
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of("message", "Vehicle does not exist"));
     }
 
     @GetMapping("/image/{fileName}")
@@ -58,15 +58,5 @@ public class VehicleController {
                 .status(HttpStatus.OK)
                 .headers(headers)
                 .body(downloadImage);
-    }
-
-
-    @PostMapping("/{id}/image")
-    public ResponseEntity<?> uploadVehicleImageById(
-            @PathVariable Integer id,
-            @RequestParam("image") MultipartFile file
-    )throws IOException {
-        String uploadImage = service.setVehicleImage(id,file);
-        return ResponseEntity.ok(uploadImage);
     }
 }

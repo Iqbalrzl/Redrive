@@ -1,10 +1,9 @@
-package com.Redrive.Backend.Customer;
+package com.Redrive.Backend.auth;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static com.Redrive.Backend.validation.ValidationMessages.*;
 
