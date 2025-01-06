@@ -27,10 +27,15 @@ export interface AdminResponse {
 
 export async function login(credentials: LoginCredentials, isAdmin: boolean = false): Promise<[string, boolean]> {
     const endpoint = isAdmin ? '/api/admin/authenticate' : '/api/customer/authenticate';
-    const response = await axiosInstance.post(endpoint, credentials);
-    const token = response.data.token;
-    localStorage.setItem('jwt', token);
-    return [token, isAdmin];
+    try {
+        const response = await axiosInstance.post(endpoint, credentials);
+        const token = response.data.token;
+        localStorage.setItem('jwt', token);
+        return [token, isAdmin];
+    } catch (error) {
+        console.error('Login error:', error);
+        throw error;
+    }
 }
 
 export async function register(data: RegisterData, isAdmin: boolean = false): Promise<MeResponse> {
@@ -44,7 +49,7 @@ export async function getMe(): Promise<MeResponse | null> {
         const response = await axiosInstance.get('/api/customer/me');
         return response.data;
     } catch (error) {
-        console.error('Error fetching user data:', error);
+        // console.error('Error fetching user data:', error);
         return null;
     }
 }
@@ -54,7 +59,7 @@ export async function getAdminData(): Promise<AdminResponse | null> {
         const response = await axiosInstance.get('/api/admin/me');
         return response.data;
     } catch (error) {
-        console.error('Error fetching admin data:', error);
+        // console.error('Error fetching admin data:', error);
         return null;
     }
 }
@@ -73,10 +78,12 @@ export async function isLoggedIn(): Promise<MeResponse | AdminResponse | null> {
         return null;
     }
     try {
+        
         const adminData = await getAdminData();
         if (adminData) {
             return adminData;
         }
+        
         const userData = await getMe();
         return userData;
     } catch (error) {

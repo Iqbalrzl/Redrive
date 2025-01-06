@@ -190,7 +190,6 @@ export default function VehicleManagementPage() {
               onChange={(e) =>
                 setNewVehicle({ ...newVehicle, year: parseInt(e.target.value) })
               }
-              min="0"
               required
             />
             <Button type="submit" className="w-full">

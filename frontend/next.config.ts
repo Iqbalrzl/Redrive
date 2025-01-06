@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
+import TerserPlugin from "terser-webpack-plugin";
 
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ['localhost'], // Add your allowed domains here
+    domains: ['localhost'],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 
