@@ -23,20 +23,17 @@ public class ReservationService {
     private final CustomerRepository custRepository;
     private final VehicleRepository vhclRepository;
     private final CustomerService custService;
-    private final VehicleService vhclService;
 
     public ReservationService(
             ReservationRepository repository,
             CustomerRepository custRepository,
             VehicleRepository vhclRepository,
-            CustomerService custService,
-            VehicleService vhclService
+            CustomerService custService
     ){
         this.repository = repository;
         this.custRepository = custRepository;
         this.vhclRepository = vhclRepository;
         this.custService = custService;
-        this.vhclService = vhclService;
     }
 
     public List<Reservation> listReservation(){

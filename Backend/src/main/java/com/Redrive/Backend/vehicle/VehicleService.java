@@ -113,6 +113,9 @@ public class VehicleService {
         }else {
             throw new EntityNotFoundException("Vehicle not found.");
         }
+    }
 
+    public List<Vehicle> searchVehicles(String query) {
+        return repository.findByModelContainingIgnoreCaseOrBrandContainingIgnoreCase(query,query);
     }
 }

@@ -1,6 +1,6 @@
 package com.Redrive.Backend.config;
 
-import com.Redrive.Backend.auth.UserRepository;
+import com.Redrive.Backend.user.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

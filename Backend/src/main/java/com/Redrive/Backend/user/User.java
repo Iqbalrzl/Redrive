@@ -1,7 +1,8 @@
-package com.Redrive.Backend.auth;
+package com.Redrive.Backend.user;
 
 import static com.Redrive.Backend.validation.ValidationMessages.*;
 
+import com.Redrive.Backend.auth.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

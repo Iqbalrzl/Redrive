@@ -1,7 +1,7 @@
 package com.Redrive.Backend;
 
 import com.Redrive.Backend.auth.JwtService;
-import com.Redrive.Backend.auth.UserRepository;
+import com.Redrive.Backend.user.UserRepository;
 import com.Redrive.Backend.auth.AuthenticationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

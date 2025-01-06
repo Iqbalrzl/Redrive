@@ -1,17 +1,12 @@
 package com.Redrive.Backend.Customer;
 
-import com.Redrive.Backend.auth.User;
+import com.Redrive.Backend.user.User;
 import com.Redrive.Backend.reservation.Reservation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-
-import static com.Redrive.Backend.validation.ValidationMessages.*;
 
 @Entity
 public class Customer extends User {

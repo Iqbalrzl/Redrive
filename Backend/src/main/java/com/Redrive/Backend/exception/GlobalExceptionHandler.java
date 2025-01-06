@@ -28,6 +28,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(VehicleDoesNotExist.class)
+    public ResponseEntity<Map<String, String>> handleVehicleDoesNotExistException(VehicleDoesNotExist ex){
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return  new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(InvalidAuthorizationHeader.class)
     public ResponseEntity<Map<String, String>> handleUsernameNotFoundException(InvalidAuthorizationHeader ex) {
         Map<String, String> errors = new HashMap<>();

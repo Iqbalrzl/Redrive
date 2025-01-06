@@ -37,6 +37,11 @@ public class VehicleController {
         return ResponseEntity.ok(service.listVehicle());
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Vehicle>> search(@RequestParam String q){
+        return ResponseEntity.ok(service.searchVehicles(q));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getVehicleById(@PathVariable Integer id) {
         Vehicle vehicle = service.getVehicleById(id);
